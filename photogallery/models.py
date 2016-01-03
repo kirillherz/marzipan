@@ -10,6 +10,6 @@ class CakeModel(models.Model):
 		verbose_name = 'Торт'
 		verbose_name_plural = 'Торты'
 		
-	def __unicode__(self):
+	def __str__(self):
 		return self.name
 		
