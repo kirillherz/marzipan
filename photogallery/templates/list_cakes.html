@@ -1,0 +1,24 @@
+<div class="pagination">
+    <span class="step-links">
+        <span class="current">
+            {%for cake in cakes.object_list %}
+            Название :{{ cake.name }}
+            <br>
+            Описание :{{cake.description}}
+            <br>
+            Стоимость:{{cake.cost}}
+            <br>
+            <img src=" {{ cake.image.url}}" width="800" height="400"> 
+            {% endfor %}
+            <br>
+            Page {{cakes.number}} of {{ cakes.paginator.num_pages}}
+            <br>
+            {% if cakes.has_previous %}
+            <a href="?page={{ cakes.previous_page_number }}">Предыдущий</a>
+            {% endif %}
+            {%if cakes.has_next %}
+            <a href="?page={{ cakes.next_page_number }}">Следующий</a>
+            {% endif %}
+        </span>
+    </span>
+</div>
