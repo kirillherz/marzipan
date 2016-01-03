@@ -1,10 +1,13 @@
 from django.db import models
 
 class CakeModel(models.Model):
-	name = models.CharField(max_length = 40,verbose_name='Название')
-	description = models.CharField(max_length = 40,verbose_name='Описание')
-	cost = models.FloatField(verbose_name='Стоимость')
-	image = models.FileField(upload_to='cakes',verbose_name='Изображение')
+	name = models.CharField(max_length = 40, verbose_name = 'Название')
+	description = models.CharField(max_length = 40, verbose_name = 'Описание')
+	weight = models.FloatField(verbose_name = 'Вес')
+	macrobiotic_value = models.FloatField(verbose_name = 'Энергитическая ценность')
+	cost = models.FloatField(verbose_name = 'Стоимость')
+	image = models.FileField(upload_to = 'cakes', verbose_name = 'Изображение')
+	
 	
 	class Meta:
 		verbose_name = 'Торт'
