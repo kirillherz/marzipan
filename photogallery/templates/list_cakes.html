@@ -1,28 +1,33 @@
-<div class="pagination">
-    <span class="step-links">
-        <span class="current">
-            {%for cake in cakes.object_list %}
-            Название :{{ cake.name }}
-            <br>
-            Описание :{{cake.description}}
-            <br>
-            Стоимость:{{cake.cost}}
-            <br>
-			Вес      :{{cake.weight}}
-			<br>
-			Энергитическая ценность: {{cake.macrobiotic_value}}
-			<br>
-            <img src=" {{ cake.image.url}}" width="800" height="400"> 
-            {% endfor %}
-            <br>
-            Page {{cakes.number}} of {{ cakes.paginator.num_pages}}
-            <br>
-            {% if cakes.has_previous %}
-            <a href="?page={{ cakes.previous_page_number }}">Предыдущий</a>
-            {% endif %}
-            {%if cakes.has_next %}
-            <a href="?page={{ cakes.next_page_number }}">Следующий</a>
-            {% endif %}
-        </span>
-    </span>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Marzipan</title>
+    <link rel="stylesheet" type="text/css" href="../../static/style.css">
+</head>
+<!--------------------------------------------------------------->
+
+<body>
+    <header class="main_head">
+        {%for cake in cakes.object_list %}
+        <img class="cakes_img effect" src=" {{ cake.image.url}}">
+        
+<!--------------------------------------------------------------->     
+        
+        <br> Page {{cakes.number}} of {{ cakes.paginator.num_pages}}
+        <br> {% if cakes.has_previous %}
+        <a href="?page={{ cakes.previous_page_number }}">Предыдущий</a> {% endif %} {%if cakes.has_next %}
+        <a href="?page={{ cakes.next_page_number }}">Следующий</a> {% endif %} 
+ 
+<!--------------------------------------------------------------->      
+        
+        <br> Название :{{ cake.name }}
+        <br> Описание :{{cake.description}}
+        <p>  Стоимость : {{cake.cost}} ₽</p>
+        <br> Вес :{{cake.weight}}
+        <br> Энергитическая ценность: {{cake.macrobiotic_value}} {% endfor %}
+    </header>
+</body>
+
+</html>
