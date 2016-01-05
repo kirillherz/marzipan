@@ -27,9 +27,9 @@ class FeedbackModel(models.Model):
 	
 class ReviewModel(models.Model):
 	name = models.CharField(max_length = 40, verbose_name = 'Имя')
-	cake = models.ForeignKey(CakeModel)
-	review = models.CharField(max_length = 100)
-	rating = models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(5)])
+	cake = models.ForeignKey(CakeModel, verbose_name = 'Торт')
+	review = models.CharField(max_length = 100, verbose_name = 'Отзыв')
+	rating = models.IntegerField(verbose_name = 'Оценка', validators=[MinValueValidator(0),MaxValueValidator(5)])
 	
 	class Meta:
 		verbose_name = 'Отзыв'

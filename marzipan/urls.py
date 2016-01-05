@@ -7,7 +7,7 @@ from .settings import MEDIA_ROOT,MEDIA_URL
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-	url(r'^cakes/',listing_cakes)
+	url(r'^cakes/',listing_cakes),
 ]
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

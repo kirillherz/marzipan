@@ -27,6 +27,11 @@
         <p>  Стоимость : {{cake.cost}} ₽</p>
         <br> Вес :{{cake.weight}}
         <br> Энергитическая ценность: {{cake.macrobiotic_value}} {% endfor %}
+		<form action='/cakes/' method='post'>	
+		 {% csrf_token %} 
+		{{ form }}
+		<input type="submit">
+		</form>
     </header>
 </body>
 
