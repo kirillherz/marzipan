@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from .models import CakeModel
 from django.shortcuts import render
-
+from django.http import HttpResponse, HttpResponseRedirect
+from .forms import *
+		
 def listing_cakes(request):
 	cakes_list = CakeModel.objects.all()
 	paginator = Paginator(cakes_list,1)
@@ -13,4 +15,10 @@ def listing_cakes(request):
 		cakes = paginator.page(1)
 	except EmptyPage:
 		cakes = paginator.page(paginator.num_pages)
-	return render(request,'list_cakes.html',{'cakes':cakes})
+	form = ReviewForm(request.POST or None)
+	if request.method == 'POST' and form.is_valid():
+		form.save()	
+		form = ReviewForm()
+	form.set_cake_id(cakes.object_list.get().id)
+	return render(request,'list_cakes.html',{'cakes':cakes,
+												 'form' :form})
