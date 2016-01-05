@@ -48,9 +48,18 @@
 <!--------------------------------------------------------------->
     
         <br> Энергитическая ценность: {{cake.macrobiotic_value}} {% endfor %}
+<<<<<<< HEAD
         
 <!--------------------------------------------------------------->
    
+=======
+		<form action='/cakes/' method='post'>	
+		 {% csrf_token %} 
+		{{ form }}
+		<input type="submit">
+		</form>
+    </header>
+>>>>>>> origin/master
 </body>
 
 </html>
