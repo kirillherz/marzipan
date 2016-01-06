@@ -19,8 +19,10 @@ class CakeModel(models.Model):
 class FeedbackModel(models.Model):
 	name = models.CharField(max_length = 40, verbose_name = 'Имя')
 	e_mail = models.EmailField(blank = True)
-	phone_number = models.IntegerField(validators = [RegexValidator("[0-9]{10}", "Incorrectly phone number" )])
-	message = models.CharField(max_length = 200)
+	phone_number = models.IntegerField(verbose_name = 'Телефонный номер', 
+	                                   validators = [RegexValidator("[0-9]{10}", "Incorrectly phone number" )])
+	
+	message = models.CharField(max_length = 200, verbose_name = 'Сообщение')
 	
 	def __str__(self):
 		return self.name

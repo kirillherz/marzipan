@@ -1,6 +1,9 @@
 ﻿from django import forms
 from django.forms import Textarea
-from .models import ReviewModel, CakeModel
+from .models import ReviewModel, CakeModel, FeedbackModel
+from django.core.exceptions import ValidationError
+from django.core.validators import MaxLengthValidator
+import re
 
 class ReviewForm(forms.ModelForm):
 	rating = forms.ChoiceField(label = 'Оценка', choices = ((1,1),(2,2),(3,3),(4,4),(5,5)))
@@ -24,3 +27,17 @@ class ReviewForm(forms.ModelForm):
 		review.review = self.cleaned_data['review']
 		review.rating = self.cleaned_data['rating']
 		review.save()
+
+class FeedbackForm(forms.ModelForm):
+	def length_validator(value):
+		if len(str(value)) != 10:
+			raise ValidationError('invalid', code = 'invalid')
+	
+	phone_number = forms.IntegerField(validators = [length_validator],error_messages = {'invalid' : 'Неправильный номер телефона'})
+	class Meta:
+		model = FeedbackModel
+		fields = '__all__'
+		widgets = {
+			'message': Textarea(attrs = {'cols': 80, 'rows': 20})
+		}
+	
