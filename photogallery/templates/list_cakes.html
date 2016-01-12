@@ -4,57 +4,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Marzipan</title>
-    <link rel="stylesheet" type="text/css" href="../../static/style.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../static/style.css">
+    <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.css">
+
 </head>
 
+<!------------------------Шапка--------------------------------------->
 
 <body>
-<!------------------------Шапка--------------------------------------->
-  
-<header class="logo_back logo_img logo_img_opa">
-   <div class="shadow_line"></div>
-    
-</header>
-  
-<!--------------------------------------------------------------->
-   
+    <nav class="navbar-wrapper navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <ul class="nav nav-justified">
+                <li><a href="#">asd</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-phone-alt">&nbsp;</span>8-800-555-35-35</a></li>
+                <li><a href="#">Marzipan</a></li>
+            </ul>
+    </nav>
 
-        {%for cake in cakes.object_list %}
-        <img class="cakes_img effect" src=" {{ cake.image.url}}">
-        
-<!--------------------------------------------------------------->     
-        
+    <!--------------------------------------------------------------->
+
+
+    {%for cake in cakes.object_list %}
+    <img class="cakes_img effect" src=" {{ cake.image.url}}">
+
+    <!--------------------------------------------------------------->
+    <ul class="pager">
         <br> Page {{cakes.number}} of {{ cakes.paginator.num_pages}}
         <br> {% if cakes.has_previous %}
-        <a href="?page={{ cakes.previous_page_number }}">Предыдущий</a> {% endif %} {%if cakes.has_next %}
-        <a href="?page={{ cakes.next_page_number }}">Следующий</a> {% endif %} 
- 
-<!--------------------------------------------------------------->      
-        
-        <br> Название :{{ cake.name }}
-        
-<!--------------------------------------------------------------->
-       
-        <br> Описание :{{cake.description}}
-        
-<!--------------------------------------------------------------->
-       
-        <p>  Стоимость : {{cake.cost}} ₽</p>
-       
-<!--------------------------------------------------------------->
-         
-          <br> Вес :{{cake.weight}}
-          
-<!--------------------------------------------------------------->
-    
-        <br> Энергитическая ценность: {{cake.macrobiotic_value}} {% endfor %}
-<!--------------------------------------------------------------->
-		<form action='/cakes/' method='post'>	
-		 {% csrf_token %} 
-		{{ form.as_p }}
-		<input type="submit">
-		</form>
-    </header>
+        <li class="previous"><a href="?page={{ cakes.previous_page_number }}"> &larr; Предыдущий</a></li>
+        {% endif %} {%if cakes.has_next %}
+        <li class="next"><a href="?page={{ cakes.next_page_number }}">Следующий &rarr; </a></li>
+        {% endif %}
+    </ul>
+
+    <!--------------------------------------------------------------->
+
+    <br> Название :{{ cake.name }}
+
+    <!--------------------------------------------------------------->
+
+    <br> Описание :{{cake.description}}
+
+    <!--------------------------------------------------------------->
+
+    <p> Стоимость : {{cake.cost}} ₽</p>
+
+    <!--------------------------------------------------------------->
+
+    <br> Вес :{{cake.weight}}
+
+    <!--------------------------------------------------------------->
+
+    <br> Энергитическая ценность: {{cake.macrobiotic_value}} {% endfor %}
+    <!--------------------------------------------------------------->
+    <form action='/cakes/' method='post'>
+        {% csrf_token %} {{ form.as_p }}
+        <input type="submit">
+    </form>
+    <script src="../../static/bootstrap/js/bootstrap.js"></script>
+    <script src="../../static/jquery/jQuery.js"></script>
 </body>
 
 </html>
