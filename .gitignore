@@ -1,4 +1,4 @@
 db.sqlite3
 *.pyc
-*.JPG
 *.bat
+marzipan/media/cakes/*.jpg
