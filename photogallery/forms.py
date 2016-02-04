@@ -1,5 +1,5 @@
 ﻿from django import forms
-from django.forms import Textarea
+from django.forms import Textarea, TextInput
 from .models import ReviewModel, CakeModel, FeedbackModel
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxLengthValidator
@@ -33,11 +33,11 @@ class FeedbackForm(forms.ModelForm):
 		if len(str(value)) != 10:
 			raise ValidationError('invalid', code = 'invalid')
 	
-	phone_number = forms.IntegerField(validators = [length_validator],error_messages = {'invalid' : 'Неправильный номер телефона'})
+	phone_number = forms.IntegerField(widget = TextInput(attrs={'data-validator': 'int', 'data-validator-id' : 'phone_number'}),validators = [length_validator],error_messages = {'invalid' : 'Неправильный номер телефона'})
 	class Meta:
 		model = FeedbackModel
 		fields = '__all__'
 		widgets = {
-			'message': Textarea(attrs = {'cols': 80, 'rows': 20})
+		    'e_mail' : TextInput(attrs={'data-validator': 'e_mail', 'data-validator-id' : 'e_mail'}),
 		}
 	
