@@ -1,13 +1,20 @@
 <script src="../../static/validators.js"></script>
-<form action ="" method = "get">
+<form action ="/feedback/" method = "post">
 	{% csrf_token %}
 	
-	<div> <label>Имя:</label>{{ form.name }}</div>
-	<div> <label>Email:</label>{{form.e_mail}}</div>
+	<div> 
+	    <label>Имя:</label>{{ form.name }}</div>
+		<div data-validator-id = "name" style=" display : none">Поле не может быть пустым</div>
 	<div>
-	    <div data-validator-id = "phone_number" style=" display : none">Ошибка</div>
+	    <div data-validator-id = "e_mail" style=" display : none">Не верный электронный адресс</div>
+	    <label>Email:</label>{{form.e_mail}}</div>
+	<div>
+	    <div data-validator-id = "phone_number" style=" display : none">Не верный номер телефона</div>
 	    <label>Номер телефона:</label> {{form.phone_number}}
 	</div>
-    <div> <label>Ваш отзыв:</label> {{form.message}}</div>
+    <div>
+	    <div data-validator-id = "message" style=" display : none">Поле не может быть пустым</div>
+	    <label>Ваш отзыв:</label> {{form.message}}
+	</div>
 	<input type = "submit">
 </form>
