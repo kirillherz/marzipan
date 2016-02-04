@@ -3,8 +3,8 @@
 	{% csrf_token %}
 	
 	<div> 
+	    <div data-validator-id = "name" style=" display : none">Поле не может быть пустым</div>
 	    <label>Имя:</label>{{ form.name }}</div>
-		<div data-validator-id = "name" style=" display : none">Поле не может быть пустым</div>
 	<div>
 	    <div data-validator-id = "e_mail" style=" display : none">Не верный электронный адресс</div>
 	    <label>Email:</label>{{form.e_mail}}</div>

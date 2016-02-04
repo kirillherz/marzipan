@@ -38,6 +38,8 @@ class FeedbackForm(forms.ModelForm):
 		model = FeedbackModel
 		fields = '__all__'
 		widgets = {
+		    'name' : TextInput(attrs={'data-validator': 'required', 'data-validator-id' : 'name'}),
+			'message' : Textarea(attrs={'data-validator': 'required', 'data-validator-id' : 'message','cols':80, 'rows': 20}),
 		    'e_mail' : TextInput(attrs={'data-validator': 'e_mail', 'data-validator-id' : 'e_mail'}),
 		}
 	
