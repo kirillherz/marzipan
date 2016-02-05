@@ -2,3 +2,6 @@ db.sqlite3
 *.pyc
 *.bat
 marzipan/media/cakes/*.jpg
+*.config
+*.pyproj
+*.suo
