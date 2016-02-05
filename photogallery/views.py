@@ -1,4 +1,4 @@
-from django.shortcuts import render
+﻿from django.shortcuts import render
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from .models import CakeModel
 from django.shortcuts import render
@@ -7,6 +7,8 @@ from .forms import *
 		
 def listing_cakes(request):
 	cakes_list = CakeModel.objects.all()
+	if len(cakes_list) == 0:
+		return render(request,'list_cakes.html')
 	paginator = Paginator(cakes_list,1)
 	page = request.GET.get('page')
 	try:
