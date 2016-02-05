@@ -1,4 +1,5 @@
-<script src="../../static/validators.js"></script>
+{% load staticfiles %}
+<script src="{% static "validators.js" %}"></script>
 <form action ="/feedback/" method = "post">
 	{% csrf_token %}
 	
