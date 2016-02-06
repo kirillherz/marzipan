@@ -16,7 +16,8 @@
     }
     .input_error{
         border-color: red;
+        border-style: groove;
+        border-width: 1px;
     }
     .input_reset{
-        border-color: black;
     }
