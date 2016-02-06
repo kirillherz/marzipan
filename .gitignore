@@ -5,3 +5,4 @@ marzipan/media/cakes/*.jpg
 *.config
 *.pyproj
 *.suo
+marzipan.sln
