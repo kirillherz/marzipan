@@ -19,6 +19,13 @@ Validators.required = function (value) {
     return value.trim().length > 0;
 };
 
+function apply_class() {
+    var elements = document.querySelectorAll("[data-validator-id]");
+    for(var i = 0; i != elements.length; i++){
+        var attribute = elements[i].getAttribute("data-class-reset");
+        elements[i].setAttribute("class", attribute);
+    }
+}
 
 function showError(input) {
     var data_validator_id = input.getAttribute("data-validator-id");
@@ -30,6 +37,7 @@ function showError(input) {
         }
     }
 }
+
 function resetError(input) {
     var data_validator_id = input.getAttribute("data-validator-id");
     var elements = document.querySelectorAll("[data-validator-id = '" + data_validator_id + "']");
@@ -42,6 +50,7 @@ function resetError(input) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    apply_class();
     var forms = document.getElementsByTagName("form");
     for (var i = 0; i !== forms.length; i++) {
         forms[i].addEventListener("submit", function (event) {
