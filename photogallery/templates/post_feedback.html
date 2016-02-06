@@ -1,21 +1,27 @@
 {% load staticfiles %}
 <script src="{% static "validators.js" %}"></script>
+<link rel="stylesheet" href="{% static "style.css" %}">
 <form action ="/feedback/" method = "post">
 	{% csrf_token %}
 	
 	<div> 
-	    <div data-validator-id = "name" style=" display : none">Поле не может быть пустым</div>
-	    <label>Имя:</label>{{ form.name }}</div>
+	    <div data-validator-id = "name" class="reset" data-class-error="error" data-class-reset="reset">Поле не может быть пустым</div>
+	    <label>Имя:</label>
+        <input data-validator="required" class="input_reset" data-validator-id="name" data-class-error="input_error" data-class-reset="input_reset" id="id_name" maxlength="40" name="name" type="text" /></div>
 	<div>
-	    <div data-validator-id = "e_mail" style=" display : none">Не верный электронный адресс</div>
-	    <label>Email:</label>{{form.e_mail}}</div>
+	    <div data-validator-id = "e_mail" class="reset" data-class-error="error" data-class-reset="reset">Не верный электронный адресс</div>
+	    <label>Email:</label>
+        <input data-validator="e_mail"  class="input_reset" data-class-error="input_error"  data-class-reset="input_reset" data-validator-id="e_mail" id="id_e_mail" maxlength="254" name="e_mail" type="text" />
+    </div>
 	<div>
-	    <div data-validator-id = "phone_number" style=" display : none">Не верный номер телефона</div>
-	    <label>Номер телефона:</label> {{form.phone_number}}
+	    <div data-validator-id = "phone_number" data-class-error="error" data-class-reset="reset">Не верный номер телефона</div>
+	    <label>Номер телефона:</label>
+        <input data-validator="int" class="input_reset" data-class-error="input_error"  data-class-reset="input_reset" data-validator-id="phone_number" id="id_phone_number" name="phone_number" type="text" />
 	</div>
     <div>
-	    <div data-validator-id = "message" style=" display : none">Поле не может быть пустым</div>
-	    <label>Ваш отзыв:</label> {{form.message}}
-	</div>
+	    <div data-validator-id = "message"  class="reset" data-class-error="error" data-class-reset="reset">Поле не может быть пустым</div>
+	    <label>Ваш отзыв:</label> 
+        <textarea cols="80" class="input_reset" data-class-error="input_error"  data-class-reset="input_reset"  data-validator="required" data-validator-id="message" id="id_message" maxlength="200" name="message" rows="20"></textarea>
+</div>
 	<input type = "submit">
 </form>
