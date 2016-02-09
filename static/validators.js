@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var forms = document.getElementsByTagName("form");
     for (var i = 0; i !== forms.length; i++) {
         forms[i].addEventListener("submit", function (event) {
-            var inputs = this.querySelectorAll("[data-validator]");
+            var inputs = this.querySelectorAll("[data-blank],[data-validator]");
             for (var j = 0; j !== inputs.length; j++) {
                 var data_validator_value = inputs[j].getAttribute("data-validator");
                 if (is_blank_validate(inputs[j])) {
