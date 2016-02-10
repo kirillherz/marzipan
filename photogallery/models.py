@@ -7,12 +7,12 @@ class CakeModel(models.Model):
 	weight = models.FloatField(verbose_name = 'Вес')
 	macrobiotic_value = models.FloatField(verbose_name = 'Энергитическая ценность')
 	cost = models.FloatField(verbose_name = 'Стоимость')
-	image = models.FileField(upload_to = 'cakes', verbose_name = 'Изображение')
+	image = models.ImageField(upload_to = 'cakes', verbose_name = 'Изображение')
 	
 	class Meta:
 		verbose_name = 'Торт'
 		verbose_name_plural = 'Торты'
-		
+        
 	def __str__(self):
 		return self.name
 

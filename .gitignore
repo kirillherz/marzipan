@@ -6,3 +6,5 @@ marzipan/media/cakes/*.jpg
 *.pyproj
 *.suo
 marzipan.sln
+*.PNG
+*.mp3
