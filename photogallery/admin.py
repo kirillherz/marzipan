@@ -7,14 +7,15 @@ from io import BytesIO
 from PIL import Image
 
 class CakeForm(forms.ModelForm):
-       
+  
     class Meta:
         model = CakeModel
         fields = '__all__'
         widgets = {'description' : Textarea(attrs = {'cols':80,'rows':20})}
-
+        
 class CakeAdmin(admin.ModelAdmin):
-
+    form = CakeForm
+    
     def save_model(self, request, obj, form, change):
         image_field = form.cleaned_data.get('image')
         image = Image.open(image_field)
@@ -26,8 +27,6 @@ class CakeAdmin(admin.ModelAdmin):
         obj.image = image_field
         obj.save()
         
-    form = CakeForm
-
 admin.site.register(CakeModel, CakeAdmin)
 admin.site.register(ReviewModel)
 admin.site.register(FeedbackModel)
