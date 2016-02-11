@@ -16,17 +16,16 @@ class ReviewForm(forms.ModelForm):
         widgets = {
             'review': Textarea(attrs = {'cols':80, 'rows': 20})
         }
+
     def set_cake_id(self, cake_id):
         self.fields['cake_id'].initial = cake_id
         
-    def save(self):
-        review = ReviewModel()
-        review.name = self.cleaned_data['name']
+    def save(self, commit = True):
+        instance = super(ReviewForm, self).save(commit = False)
         cake = CakeModel.objects.get(pk = self.cleaned_data['cake_id'])
-        review.cake = cake
-        review.review = self.cleaned_data['review']
-        review.rating = self.cleaned_data['rating']
-        review.save()
+        instance.cake = cake
+        if commit:
+            instance.save()
         
 class FeedbackForm(forms.ModelForm):
     def length_validator(value):
