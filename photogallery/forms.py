@@ -8,7 +8,7 @@ import re
 class ReviewForm(forms.ModelForm):
     rating = forms.ChoiceField(label = 'Оценка', choices = ((1,1),(2,2),(3,3),(4,4),(5,5)))
     cake_id = forms.IntegerField(widget = forms.HiddenInput)
-    
+
     class Meta:
         model = ReviewModel
         fields = '__all__'
@@ -17,8 +17,16 @@ class ReviewForm(forms.ModelForm):
             'review': Textarea(attrs = {'cols':80, 'rows': 20})
         }
 
-    def set_cake_id(self, cake_id):
-        self.fields['cake_id'].initial = cake_id
+    def __init__(self, *args, **kwargs):
+        super(ReviewForm, self).__init__(*args, **kwargs)
+
+    @property
+    def id_cake(self):
+        pass
+
+    @id_cake.setter
+    def id_cake(self,value):
+        self.fields['cake_id'].initial = value
         
     def save(self, commit = True):
         instance = super(ReviewForm, self).save(commit = False)
@@ -26,6 +34,7 @@ class ReviewForm(forms.ModelForm):
         instance.cake = cake
         if commit:
             instance.save()
+        return instance
         
 class FeedbackForm(forms.ModelForm):
     def length_validator(value):

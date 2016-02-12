@@ -21,9 +21,9 @@ def listing_cakes(request):
     if request.method == 'POST' and form.is_valid():
         form.save()	
         form = ReviewForm()
-    form.set_cake_id(cakes.object_list[0].id)
+    form.id_cake = cakes.object_list[0].id
     return render(request,'list_cakes.html',{'cakes':cakes, 'form' :form})
-												 
+
 def post_feedback(request):
     form = FeedbackForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
