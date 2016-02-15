@@ -8,6 +8,7 @@ from .settings import MEDIA_ROOT,MEDIA_URL
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 	url(r'^cakes/',listing_cakes),
+    url(r'^test/', ListingCakeView.as_view()),
 	url(r'^feedback/', post_feedback)
 ]
 
